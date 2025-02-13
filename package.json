@@ -1,0 +1,85 @@
+{
+  "name": "isgk-shopping-cart",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^8",
+    "@sap/cds-dk": "^8",
+    "express": "^4",
+    "@cap-js/hana": "^1",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.8.0",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-cart": "cds watch --open cart/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "engines": {
+    "node": "^18.0.0"
+  },
+  "cds": {
+    "serve": {
+      "static": [
+        "app/cart/webapp"
+      ]
+    },
+    "cors": {
+      "enabled": true,
+      "origin": [
+        "*",
+        "https://32b6f2cftrial.launchpad.cfapps.us10.hana.ondemand.com/site?siteId=4984b9b2-f383-417e-a329-87d23510d749"
+      ],
+      "methods": "GET,POST,PUT,DELETE,OPTIONS",
+      "allowedHeaders": "Content-Type, Authorization"
+    },
+    "requires": {
+      "auth": {
+        "[production]": {
+          "strategy": "JWT",
+          "jwt": {
+            "verification-key": "${VCAP_SERVICES.xsuaa.0.credentials.verificationkey}"
+          }
+        },
+        "kind": "mocked",
+        "users": {
+          "rojan": {
+            "password": "rojan",
+            "roles": [
+              "support"
+            ]
+          },
+          "john": {
+            "password": "john",
+            "roles": [
+              "support"
+            ]
+          }
+        }
+      },
+      "db": {
+        "kind": "sqlite"
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "html5-repo": true,
+      "destinations": true,
+      "workzone": true
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  }
+}

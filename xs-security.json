@@ -1,0 +1,42 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.support",
+      "description": "support"
+    },
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
+    },
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "User access"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "support",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.support"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "User",
+      "description": "Basic user access",
+      "scope-references": [
+        "$XSAPPNAME.User"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <script>
+            window['sap-ushell-config'] = {
+                defaultRenderer: 'fiori2',
+                services: {
+                    NavTargetResolution: {
+                        config: {
+                            allowTestUrlComponentConfig: true,
+                            enableClientSideTargetResolution: true
+                        }
+                    }           
+                },
+                applications: {
+                    "cart-app": {
+                        title: 'ISGK Shopping Portal',
+                        description: 'A shopping portal of ISGK',
+                        additionalInformation: 'SAPUI5.Component=sap.ui.demo.cart',
+                        applicationType: 'URL',
+                        url: "/cart/webapp",
+                        navigationMode: 'embedded'
+                    }
+            }
+        }
+        </script>
+        <script src="https://ui5.sap.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+        <script
+            src="https://ui5.sap.com/resources/sap-ui-core.js"
+            data-sap-ui-libs="sap.m, sap.ushell, sap.fe.templates"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-frameOptions="allow"
+            data-sap-ui-bindingSyntax="complex"
+            data-sap-ui-resourceroots='{
+                "sap.ui.demo.cart": "/cart/webapp"
+            }'
+        ></script>
+        <script>
+            sap.ui.getCore().attachInit(function() {
+                sap.ushell.Container.createRenderer().placeAt('content');
+            });
+        </script>
+    </head>
+    <body class="sapUiBody" id="content"><div
+        data-sap-ui-component
+        data-name="sap.ui.demo.cart"
+        data-id="container"
+        data-settings='{"id" : "sap.ui.demo.cart"}'
+        data-handle-validation="true"
+    ></div></body>
+</html>

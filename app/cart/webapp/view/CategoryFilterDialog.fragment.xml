@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout">
+
+    <ViewSettingsDialog
+        id="categoryFilterDialog"
+        confirm="handleConfirm"
+        cancel="handleCancel"
+        resetFilters="handleResetFilters">
+
+        <filterItems>
+            <!-- 🔹 Availability Filter -->
+            <ViewSettingsFilterItem
+                text="{i18n>availabilityFilterTitle}"
+                key="availabilityKey">
+                <items>
+                    <ViewSettingsItem text="{i18n>availableFilterTitle}" key="A"/>
+                    <ViewSettingsItem text="{i18n>outOfStockFilterTitle}" key="O"/>
+                    <ViewSettingsItem text="{i18n>discontinuedFilterTitle}" key="D"/>
+                </items>
+            </ViewSettingsFilterItem>
+
+            <!-- 🔹 Price Filter with Range Slider -->
+            <ViewSettingsCustomItem
+                text="{i18n>priceFilterTitle}"
+                key="Price">
+                <customControl>
+                    <l:VerticalLayout
+                        width="100%"
+                        class="sapUiContentPadding">
+                        <RangeSlider
+                            id="rangeSlider"
+                            width="100%"
+                            min="0"
+                            max="5000"
+                            step="10"
+                            value="{view>/filterSettings/lowPrice}"
+                            value2="{view>/filterSettings/highPrice}"
+                            change="handleChange"
+                            liveChange="handleLiveChange"
+                            class="sapUiSmallMarginTop"/>
+                    </l:VerticalLayout>
+                </customControl>
+            </ViewSettingsCustomItem>
+
+            <!-- 🔹 Supplier Filter (Now using `odata>/Suppliers` instead of `view>/Suppliers`) -->
+            <ViewSettingsFilterItem
+                text="{i18n>supplierFilterTitle}"
+                key="supplierKey"
+                items="{view>/Suppliers}">
+                <items>
+                    <ViewSettingsItem text="{view>SupplierName}" key="{view>SupplierName}"/>
+                </items>
+            </ViewSettingsFilterItem>
+        </filterItems>
+
+    </ViewSettingsDialog>
+
+</core:FragmentDefinition>

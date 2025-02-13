@@ -1,0 +1,175 @@
+_schema-version: 3.3.0
+ID: isgk-shopping-cart
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+        - mkdir -p resources
+        - cp workzone/cdm.json resources/cdm.json
+modules:
+  - name: isgk-shopping-cart-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      readiness-health-check-type: http
+      readiness-health-check-http-endpoint: /health
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: isgk-shopping-cart-db
+      - name: isgk-shopping-cart-auth
+      - name: isgk-shopping-cart-destination
+      - name: isgk-shopping-cart-html5-repo-host
+
+  - name: isgk-shopping-cart-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: isgk-shopping-cart-db
+
+  - name: isgk-shopping-cart-app-deployer
+    type: com.sap.application.content
+    path: .
+    parameters:
+      config:
+        destinations:
+        - forwardAuthToken: true
+          name: isgk-shopping-cart-srv-api
+          url: ~{srv-api/srv-url}
+        - name: ui5
+          url: https://ui5.sap.com
+    requires:
+      - name: srv-api
+      - name: isgk-shopping-cart-auth
+      - name: isgk-shopping-cart-html5-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources/
+      requires:
+        - name: isgkshoppingcartcart
+          artifacts:
+            - cart.zip
+          target-path: resources/
+
+  - name: isgkshoppingcartcart
+    type: html5
+    path: app/cart
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+    requires:
+    - name: isgk-shopping-cart-html5-repo-host
+    - name: isgk-shopping-cart-destination
+    - name: isgk-shopping-cart-auth
+
+  - name: isgk-shopping-cart-destinations
+    type: com.sap.application.content
+    requires:
+      - name: isgk-shopping-cart_html_repo_runtime
+        parameters:
+          service-key:
+            name: isgk-shopping-cart-html5-app-runtime-service-key
+      - name: isgk-shopping-cart-auth
+        parameters:
+          service-key:
+            name: isgk-shopping-cart-auth-key
+      - name: isgk-shopping-cart-html5-repo-host
+        parameters:
+          service-key:
+            name: isgk-shopping-cart-html5-repo-host-key
+      - name: srv-api
+      - name: isgk-shopping-cart-destination
+        parameters:
+          content-target: true
+      
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        subaccount:
+          existing_destinations_policy: update
+          destinations:
+            - Name: isgk-shopping-cart-management_cdm
+              ServiceInstanceName: isgk-shopping-cart-html5-app-runtime-service
+              ServiceKeyName: isgk-shopping-cart-html5-app-runtime-service-key
+              URL: https://html5-apps-repo-rt.${default-domain}/applications/cdm/isgkshoppingcart.service
+
+resources:
+  - name: isgk-shopping-cart-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: isgk-shopping-cart-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: isgk-shopping-cart-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: isgk-shopping-cart-${org}-${space}
+        tenant-mode: dedicated
+  - name: isgk-shopping-cart_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: isgk-shopping-cart-html5-app-runtime-service
+      service-plan: app-runtime
+  - name: isgk-shopping-cart-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        init_data:
+          subaccount:
+            existing_destinations_policy: update
+            destinations:
+              - Authentication: NoAuthentication
+                Name: isgk-shopping-cart-rt
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://32b6f2cftrial.launchpad.${default-domain}
+                CEP.HTML5contentprovider: true
+              - Name: isgk-shopping-cart-srv-api
+                URL: https://32b6f2cftrial-dev-isgk-shopping-cart-srv.cfapps.us10-001.hana.ondemand.com
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: OAuth2UserTokenExchange
+                tokenServiceURL: https://32b6f2cftrial.authentication.us10.hana.ondemand.com
+                tokenServiceURLType: Dedicated
+                clientId: sb-isgk-shopping-cart-32b6f2cftrial-dev!t381840
+                HTML5.DynamicDestination: true
+      requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true 
+

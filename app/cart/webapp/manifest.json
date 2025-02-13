@@ -1,0 +1,298 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "sap.ui.demo.cart",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.16.3",
+      "toolsId": "f2feaf41-e2a6-495f-9bef-03fae19d2e5a"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0",
+          "synchronizationMode": "None",
+          "preload": false,
+          "useBatch": true,
+          "defaultBindingMode": "TwoWay"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "cart-display": {
+          "semanticObject": "cart",
+          "action": "display",
+          "title": "ISGK Shopping Portal",
+          "subTitle": "ISGK Shopping Portal",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://cart",
+      "favIcon": "img/favicon.ico",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "rootView": {
+      "viewName": "sap.ui.demo.cart.view.App",
+      "type": "XML",
+      "id": "App"
+    },
+    "dependencies": {
+      "minUI5Version": "1.132.1",
+      "libs": {
+        "sap.f": {},
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.ui.demo.cart.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ],
+          "fallbackLocale": ""
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "odata": {
+        "dataSource": "mainService",
+        "settings": {
+          "autoExpandSelect": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "controlAggregation": "midColumnPages",
+        "controlId": "layout",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "sap.ui.demo.cart.view",
+        "bypassed": {
+          "target": [
+            "home",
+            "notFound"
+          ]
+        }
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "home",
+          "target": [
+            "home",
+            "welcome"
+          ]
+        },
+        {
+          "pattern": "categories",
+          "name": "categories",
+          "target": [
+            "home",
+            "welcome"
+          ]
+        },
+        {
+          "pattern": "category/{id}",
+          "name": "category",
+          "target": [
+            "welcome",
+            "category"
+          ],
+          "titleTarget": "category"
+        },
+        {
+          "pattern": "category/{id}/product/{productId}",
+          "name": "product",
+          "target": [
+            "category",
+            "product"
+          ],
+          "titleTarget": "product"
+        },
+        {
+          "pattern": "category/{id}/compare/:item1Id:/:item2Id:",
+          "name": "comparison",
+          "target": [
+            "category",
+            "comparison"
+          ],
+          "titleTarget": "comparison"
+        },
+        {
+          "pattern": "category/{id}/compare/:item1Id:/:item2Id:/cart",
+          "name": "comparisonCart",
+          "target": [
+            "category",
+            "comparison",
+            "cart"
+          ],
+          "titleTarget": "comparison"
+        },
+        {
+          "pattern": "category/{id}/product/{productId}/cart",
+          "name": "productCart",
+          "target": [
+            "category",
+            "product",
+            "cart"
+          ],
+          "titleTarget": "product"
+        },
+        {
+          "pattern": "cart",
+          "name": "cart",
+          "target": [
+            "home",
+            "welcome",
+            "cart"
+          ]
+        },
+        {
+          "pattern": "checkout",
+          "name": "checkout",
+          "target": "checkout"
+        },
+        {
+          "pattern": "ordercompleted/{orderNumber}",
+          "name": "ordercompleted",
+          "target": "ordercompleted"
+        }
+      ],
+      "targets": {
+        "product": {
+          "name": "Product",
+          "level": 3,
+          "id": "product",
+          "controlAggregation": "midColumnPages",
+          "title": "{Name}"
+        },
+        "comparison": {
+          "name": "Comparison",
+          "level": 3,
+          "id": "comparison",
+          "controlAggregation": "midColumnPages",
+          "title": "{Name}"
+        },
+        "category": {
+          "name": "Category",
+          "level": 2,
+          "controlAggregation": "beginColumnPages",
+          "id": "category",
+          "title": {
+            "parts": [
+              "i18n>tabTitle",
+              "CategoryName"
+            ]
+          }
+        },
+        "notFound": {
+          "name": "NotFound",
+          "level": 3,
+          "controlAggregation": "midColumnPages",
+          "id": "notFoundView",
+          "title": "{i18n>categoryNoData}"
+        },
+        "welcome": {
+          "name": "Welcome",
+          "level": 0,
+          "id": "welcomeView",
+          "controlAggregation": "midColumnPages"
+        },
+        "home": {
+          "name": "Home",
+          "level": 1,
+          "controlAggregation": "beginColumnPages",
+          "id": "homeView",
+          "title": "{i18n>appTitle}"
+        },
+        "cart": {
+          "name": "Cart",
+          "controlAggregation": "endColumnPages",
+          "id": "cartView",
+          "title": {
+            "parts": [
+              "i18n>tabTitle",
+              "i18n>tableTitleCart"
+            ]
+          }
+        },
+        "checkout": {
+          "name": "Checkout",
+          "controlAggregation": "beginColumnPages",
+          "level": 1,
+          "title": "{i18n>checkoutTitle}",
+          "id": "checkoutView"
+        },
+        "ordercompleted": {
+          "name": "OrderCompleted",
+          "controlAggregation": "beginColumnPages",
+          "level": 2,
+          "id": "orderCompletedView",
+          "title": "{i18n>orderCompletedTitle}"
+        }
+      }
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "isgkshoppingcart.service"
+  }
+}

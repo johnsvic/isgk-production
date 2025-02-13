@@ -1,0 +1,42 @@
+ProductId,Name,ShortDescription,SupplierName,Category_Category,Weight,WeightUnit,PictureUrl,Status,Price,DimensionWidth,DimensionDepth,DimensionHeight,DimensionUnit,CurrencyCode,Stock
+470179,Monopolar curved scissors (Hot shears),Monopolar curved scissors (Hot shears),ISGK,C1,0.5,KG,img/470179.png,A,456,10,5,30,cm,JPY,40
+470183,Permanent cautery hook,Permanent cautery hook,ISGK,C1,0.5,KG,img/470183.png,A,8981,15,10,40,cm,JPY,40
+470184,Permanent cautery spatula,Permanent cautery spatula,ISGK,C1,0.5,KG,img/470184.png,A,8456,20,15,50,cm,JPY,40
+471172,Maryland bipolar forceps,Maryland bipolar forceps,ISGK,C2,0.5,KG,img/471172.png,A,2489,25,20,60,cm,JPY,40
+471205,Fenestrated bipolar forceps,Fenestrated bipolar forceps,ISGK,C2,0.5,KG,img/471205.png,D,7645,30,25,70,cm,JPY,0
+471344,Curved bipolar dissector,Curved bipolar dissector,ISGK,C2,0.5,KG,img/471344.png,O,1425,35,30,80,cm,JPY,0
+471171,Micro bipolar forceps,Micro bipolar forceps,ISGK,C2,0.5,KG,img/471171.png,A,3486,40,35,90,cm,JPY,40
+471400,Long bipolar grasper,Long bipolar grasper,ISGK,C2,0.5,KG,img/471400.png,D,778,45,40,100,cm,JPY,0
+471405,Force bipolar,Force bipolar,ISGK,C2,0.5,KG,img/471405.png,A,1496,50,45,110,cm,JPY,40
+470327,Medium-large clip applier 1,Medium-large clip applier 1,ISGK,C3,0.5,KG,img/470327.png,A,7642,55,50,120,cm,JPY,40
+470230,Large clip applier 2,Large clip applier 2,ISGK,C3,0.5,KG,img/470230.png,O,4759,60,55,130,cm,JPY,0
+470401,Small clip applier 3,Small clip applier 3,ISGK,C3,0.5,KG,img/470401.png,D,2148,65,60,140,cm,JPY,0
+471006,Large needle driver,Large needle driver,ISGK,C4,0.5,KG,img/471006.png,A,3479,70,65,150,cm,JPY,40
+471309,Mega SutureCut needle driver,Mega SutureCut needle driver,ISGK,C4,0.5,KG,img/471309.png,O,4152,75,70,160,cm,JPY,0
+470194,Mega needle driver,Mega needle driver,ISGK,C4,0.5,KG,img/470194.png,O,6189,80,75,170,cm,JPY,0
+471296,Large SutureCut needle driver,Large SutureCut needle driver,ISGK,C4,0.5,KG,img/471296.png,D,4263,85,80,180,cm,JPY,0
+471093,ProGrasp forceps,ProGrasp forceps,ISGK,C5,0.5,KG,img/471093.png,A,1458,90,85,190,cm,JPY,40
+470207,Tenaculum forceps,Tenaculum forceps,ISGK,C5,0.5,KG,img/470207.png,O,4657,95,90,200,cm,JPY,0
+471048,Long tip forceps,Long tip forceps,ISGK,C5,0.5,KG,img/471048.png,D,1654,100,95,210,cm,JPY,0
+470347,Tip-Up fenestrated grasper,Tip-Up fenestrated grasper,ISGK,C5,0.5,KG,img/470347.png,A,1778,105,100,220,cm,JPY,40
+470318,Small Graptor (grasping retractor) ,Small Graptor (grasping retractor) ,ISGK,C5,0.5,KG,img/470318.png,A,2499,110,105,230,cm,JPY,40
+471049,Cadiere forceps,Cadiere forceps,ISGK,C5,0.5,KG,img/471049.png,A,3644,115,110,240,cm,JPY,40
+471190,Cobra grasper,Cobra grasper,ISGK,C5,0.5,KG,img/471190.png,A,1647,120,115,250,cm,JPY,40
+470001,Potts scissors,Potts scissors,ISGK,C6,0.5,KG,img/470001.png,O,7645,125,120,260,cm,JPY,0
+470007,Round tip scissors,Round tip scissors,ISGK,C6,0.5,KG,img/470007.png,D,1425,130,125,270,cm,JPY,0
+480460,SureForm 60 instrument,SureForm 60 instrument,ISGK,C7,0.5,KG,img/480460.png,A,3486,135,130,280,cm,JPY,40
+480445,SureForm 45 instrument,SureForm 45 instrument,ISGK,C7,0.5,KG,img/480445.png,A,778,140,135,290,cm,JPY,40
+480545,SureForm 45 curved-tip instrument,SureForm 45 curved-tip instrument,ISGK,C7,0.5,KG,img/480545.png,A,6189,145,140,300,cm,JPY,40
+48360W,"Reload, SureForm 60, 2.5 white","Reload, SureForm 60, 2.5 white",ISGK,C8,0.5,KG,img/48360W.png,A,4263,150,145,310,cm,JPY,40
+48360B,"Reload, SureForm 60, 3.5 blue","Reload, SureForm 60, 3.5 blue",ISGK,C8,0.5,KG,img/48360B.png,A,1458,155,150,320,cm,JPY,40
+48360G,"Reload, SureForm 60, 4.3 green","Reload, SureForm 60, 4.3 green",ISGK,C8,0.5,KG,img/48360G.png,A,4198,160,155,330,cm,JPY,40
+48360T,"Reload, SureForm 60, 4.6 black","Reload, SureForm 60, 4.6 black",ISGK,C8,0.5,KG,img/48360T.png,A,7489,165,160,340,cm,JPY,40
+48345M,"Reload, SureForm 45, 2.0 gray","Reload, SureForm 45, 2.0 gray",ISGK,C8,0.5,KG,img/48345M.png,D,6189,170,165,350,cm,JPY,0
+48345W,"Reload, SureForm 45, 2.5 white","Reload, SureForm 45, 2.5 white",ISGK,C8,0.5,KG,img/48345W.png,O,4263,175,170,360,cm,JPY,0
+48345B,"Reload, SureForm 45, 3.5 blue","Reload, SureForm 45, 3.5 blue",ISGK,C8,0.5,KG,img/48345B.png,A,1458,180,175,370,cm,JPY,40
+48345G,"Reload, SureForm 45, 4.3 green","Reload, SureForm 45, 4.3 green",ISGK,C8,0.5,KG,img/48345G.png,D,4657,185,180,380,cm,JPY,0
+48345T,"Reload, SureForm 45, 4.6 black","Reload, SureForm 45, 4.6 black",ISGK,C8,0.5,KG,img/48345T.png,O,1654,190,185,390,cm,JPY,0
+470375,12 mm and stapler cannula (100 mm),12 mm and stapler cannula (100 mm),ISGK,C9,0.5,KG,img/470375.png,A,6189,195,190,400,cm,JPY,40
+470376,12 mm and stapler blunt obturator,12 mm and stapler blunt obturator,ISGK,C9,0.5,KG,img/470376.png,O,4263,200,195,410,cm,JPY,0
+470389,"12 mm and stapler cannula, long (150 mm)","12 mm and stapler cannula, long (150 mm)",ISGK,C9,0.5,KG,img/470389.png,A,1458,205,200,420,cm,JPY,40
+470390,"12 mm and stapler blunt obturator, long","12 mm and stapler blunt obturator, long",ISGK,C9,0.5,KG,img/470390.png,A,4657,210,205,430,cm,JPY,40
